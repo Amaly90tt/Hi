@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ar"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>موقع النكت والمرح</title> 
+  <link rel="stylesheet" href="style.css"> 
+ <style type="text/css" id="dcoder_stylesheet">* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: auto;
+    background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d') no-repeat center center fixed;
+    background-size: cover;
+    filter: blur(8px);
+    z-index: -1;
+}
+
+.container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.section {
+    margin-top: 20px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 80%;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    color: #ffffff;
+    background: linear-gradient(45deg, #f857a6, #ff5858);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(45deg, #ff5858, #f857a6);
+}
+
+.contact {
+    margin-top: 30px;
+    font-size: 1.2rem;
+    color: #666;
+}</style></head> 
+ <body> 
+  <div class="background"></div> 
+  <div class="container"> 
+   <h1>مرحبًا بك في موقع النكت والمرح</h1> <!-- خانة النكت --> 
+   <div class="section"> 
+    <h2>نكت مضحكة</h2> 
+    <p id="joke">اضغط على الزر للحصول على نكتة جديدة!</p> <button onclick="generateJoke()">أعطني نكتة</button> 
+   </div> <!-- خانة البحث في جوجل --> 
+   <div class="section"> 
+    <h2>البحث في جوجل</h2> 
+    <input type="text" id="googleSearch" placeholder="أدخل كلمة البحث"> <button onclick="searchGoogle()">ابحث</button> 
+   </div> <!-- خانة زخرفة النص --> 
+   <div class="section"> 
+    <h2>زخرفة النص</h2> 
+    <input type="text" id="textToDecorate" placeholder="أدخل النص هنا"> <button onclick="decorateText()">زخرف</button> 
+    <p id="decoratedText"></p> 
+   </div> <!-- خانة اقتباسات تحفيزية --> 
+   <div class="section"> 
+    <h2>اقتباسات تحفيزية</h2> <button onclick="generateQuote()">أعطني اقتباس</button> 
+    <p id="quote"></p> 
+   </div> <!-- خانة حقائق غريبة --> 
+   <div class="section"> 
+    <h2>حقائق غريبة</h2> <button onclick="generateFact()">أعطني حقيقة</button> 
+    <p id="fact"></p> 
+   </div> <!-- طرق التواصل --> 
+   <div class="contact"> 
+    <h2>تواصل معنا</h2> 
+    <p>البريد الإلكتروني: <a href="mailto:amaly90tt@gmail.com">amaly90tt@gmail.com</a></p> 
+    <p>الهاتف: <a href="tel:+967777627754">+967777627754</a></p> 
+    <p>الإنستجرام: <a href="https://www.instagram.com/aa.x711" target="_blank">@aa.x711</a></p> 
+   </div> 
+  </div> 
+  <script src="script.js"></script> 
+ 
+<script type="text/javascript" id="dcoder_script">// مصفوفة النكت
+const jokes = [
+    "مرة واحد ذهب للبقالة، لقاه مقفل وقال له: وينك يا بقال؟",
+    "فيه واحد كسلان جدًا، ما يدرس إلا في الحلم ويقول حاسس بتعب دراسي.",
+    // أضف المزيد من النكات هنا
+];
+
+// مصفوفة الاقتباسات التحفيزية
+const quotes = [
+    "لا تدع الخوف يمنعك من تحقيق أحلامك.",
+    "النجاح هو الثبات أمام العقبات.",
+    // أضف المزيد من الاقتباسات هنا
+];
+
+// مصفوفة الحقائق الغريبة
+const facts = [
+    "النعام هو الطائر الوحيد الذي يملك إصبعين فقط في كل قدم!",
+    "يوجد نجوم في الكون أكثر من حبات الرمل على شواطئ الأرض.",
+    // أضف المزيد من الحقائق هنا
+];
+
+// دالة توليد نكتة
+function generateJoke() {
+    const randomIndex = Math.floor(Math.random() * jokes.length);
+    document.getElementById("joke").innerText = jokes[randomIndex];
+}
+
+// دالة البحث في جوجل
+function searchGoogle() {
+    const query = document.getElementById("googleSearch").value;
+    if (query) {
+        window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
+    }
+}
+
+// دالة زخرفة النص
+function decorateText() {
+    const text = document.getElementById("textToDecorate").value;
+    const decorated = `✿ ${text} ✿`; // زخرفة بسيطة
+    document.getElementById("decoratedText").innerText = decorated;
+}
+
+// دالة توليد اقتباس
+function generateQuote() {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    document.getElementById("quote").innerText = quotes[randomIndex];
+}
+
+// دالة توليد حقيقة
+function generateFact() {
+    const randomIndex = Math.floor(Math.random() * facts.length);
+    document.getElementById("fact").innerText = facts[randomIndex];
+}</script></body></html>
